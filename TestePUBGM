@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Abrir PUBG MOBILE</title>
+  <style>
+    body {
+      background-color: #121212;
+      color: #f1f1f1;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding-top: 100px;
+    }
+    h1 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 18px;
+      margin-bottom: 40px;
+    }
+    .loading {
+      font-size: 16px;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+  <h1>Abrindo o PUBG MOBILE...</h1>
+  <p class="loading">Aguarde alguns segundos. Se o jogo não abrir automaticamente, você será redirecionado.</p>
+
+  <script>
+    function isIOS() {
+      return /iPhone|iPad|iPod/i.test(navigator.userAgent);
+    }
+
+    function isAndroid() {
+      return /Android/i.test(navigator.userAgent);
+    }
+
+    if (isAndroid()) {
+      // Tenta abrir o app no Android
+      window.location.href = "intent://launch/#Intent;package=com.tencent.ig;scheme=pubgmobile;end";
+
+      // Se falhar, redireciona para a Play Store
+      setTimeout(function () {
+        window.location.href = "https://play.google.com/store/apps/details?id=com.tencent.ig";
+      }, 2500);
+    } else if (isIOS()) {
+      // Tenta abrir o app no iOS (isso só funciona se PUBG tiver suporte a universal links)
+      window.location.href = "pubgmobile://";
+
+      // Se falhar, redireciona para a App Store
+      setTimeout(function () {
+        window.location.href = "https://apps.apple.com/app/id1330123889";
+      }, 2500);
+    } else {
+      // Fallback para desktop ou outro sistema
+      window.location.href = "https://pubgmobile.live/appdownload";
+    }
+  </script>
+</body>
+</html>
