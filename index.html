@@ -1,43 +1,61 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-TNCV03HY29"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-TNCV03HY29');
-</script>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Abrir PUBG MOBILE</title>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TNCV03HY29"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TNCV03HY29');
+  </script>
+
   <style>
     body {
-      background-color: #121212;
-      color: #f1f1f1;
+      background-color: #0e0e0e;
+      color: #fff;
       font-family: Arial, sans-serif;
       text-align: center;
-      padding-top: 100px;
+      padding: 40px;
     }
-    h1 {
-      font-size: 28px;
+    img {
+      max-width: 150px;
       margin-bottom: 20px;
     }
-    p {
-      font-size: 18px;
-      margin-bottom: 40px;
+    h1 {
+      font-size: 24px;
+      margin-bottom: 10px;
     }
-    .loading {
+    p {
       font-size: 16px;
-      opacity: 0.7;
+      margin-bottom: 20px;
+    }
+    .btn {
+      background-color: #ffc107;
+      border: none;
+      color: #000;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 20px;
     }
   </style>
 </head>
 <body>
+
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/PUBG_Mobile_logo.svg/512px-PUBG_Mobile_logo.svg.png" alt="PUBG MOBILE Logo">
+
   <h1>Abrindo o PUBG MOBILE...</h1>
-  <p class="loading">Aguarde alguns segundos. Se o jogo não abrir automaticamente, você será redirecionado.</p>
+  <p>Se o jogo não abrir automaticamente, clique no botão abaixo para abrir ou instalar:</p>
+
+  <a id="openAppBtn" href="#" class="btn">Abrir PUBG MOBILE</a>
 
   <script>
     function isIOS() {
@@ -48,26 +66,31 @@
       return /Android/i.test(navigator.userAgent);
     }
 
-    if (isAndroid()) {
-      // Tenta abrir o app no Android
-      window.location.href = "intent://launch/#Intent;package=com.tencent.ig;scheme=pubgmobile;end";
-
-      // Se falhar, redireciona para a Play Store
-      setTimeout(function () {
-        window.location.href = "https://play.google.com/store/apps/details?id=com.tencent.ig";
-      }, 2500);
-    } else if (isIOS()) {
-      // Tenta abrir o app no iOS (isso só funciona se PUBG tiver suporte a universal links)
-      window.location.href = "pubgmobile://";
-
-      // Se falhar, redireciona para a App Store
-      setTimeout(function () {
-        window.location.href = "https://apps.apple.com/app/id1330123889";
-      }, 2500);
-    } else {
-      // Fallback para desktop ou outro sistema
-      window.location.href = "https://pubgmobile.live/appdownload";
+    function openApp() {
+      if (isAndroid()) {
+        window.location.href = "intent://launch/#Intent;package=com.tencent.ig;scheme=pubgmobile;end";
+        setTimeout(() => {
+          window.location.href = "https://play.google.com/store/apps/details?id=com.tencent.ig";
+        }, 2500);
+      } else if (isIOS()) {
+        window.location.href = "pubgmobile://";
+        setTimeout(() => {
+          window.location.href = "https://apps.apple.com/app/id1330123889";
+        }, 2500);
+      } else {
+        window.location.href = "https://pubgmobile.live/appdownload";
+      }
     }
+
+    // Tenta abrir automaticamente
+    openApp();
+
+    // Botão manual
+    document.getElementById('openAppBtn').addEventListener('click', function(e) {
+      e.preventDefault();
+      openApp();
+    });
   </script>
+
 </body>
 </html>
